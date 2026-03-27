@@ -1,0 +1,19 @@
+from imageai.Detection import VideoObjectDetection
+import os
+
+execution_path = os.getcwd()
+
+detector = VideoObjectDetection()
+
+detector.setModelTypeAsRetinaNet()
+detector.setModelPath(os.path.join(execution_path, "retinanet_resnet50_fpn_coco-eeacb38b.pth"))
+detector.loadModel()
+
+video_path = detector.detectObjectsFromVideo(
+    input_file_path=os.path.join(execution_path, "video_predetect.mp4"),
+    output_file_path=os.path.join(execution_path, "video_detected"),
+    frames_per_second=20, 
+    log_progress=True
+)
+
+print(f"Video đã xử lý xong và lưu tại: {video_path}")
